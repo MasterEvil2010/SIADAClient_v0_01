@@ -1,66 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_0601"
     tools:context=".MainActivity">
 
+    <View
+        android:id="@+id/vievHeaderBacground"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/dark_4975"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
-        android:id="@+id/t1"
+        android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="307dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Кімната 1"
+        android:textColor="@color/yellow_1205"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tempTextId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="00°C"
+        android:textColor="@color/red_485"
+        android:textSize="80sp"
+        app:layout_constraintTop_toBottomOf="@+id/textTitle"
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
+    <TextView
+        android:id="@+id/HumLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Вологість"
+        android:textColor="@color/blue_130"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/tempTextId"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
-    <RelativeLayout
-        android:layout_toLeftOf="@id/t1"
-        android:layout_marginRight="10dp"
-        android:id="@+id/BoxTemp"
-        android:layout_width="185dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/box">
+    <TextView
+        android:id="@+id/tempHumId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="25sp"
+        android:textColor="@color/blue_130"
+        app:layout_constraintTop_toBottomOf="@+id/tempTextId"
+        app:layout_constraintStart_toEndOf="@+id/HumLabel"
+        android:text="00%"
 
-        <TextView
-            android:id="@+id/tempTextId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="00 °C"
-            android:textSize="40dp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_toRightOf="@id/t1"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/BoxHum"
-        android:layout_width="185dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/box">
-
-        <TextView
-            android:id="@+id/tempHumId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="00 %"
-            android:textSize="40dp" />
-
-    </RelativeLayout>
+        />
 
     <RelativeLayout
         android:id="@+id/BoxLight"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginVertical="200dp"
-        android:layout_centerHorizontal = "true"
-        android:background="@drawable/box">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/box"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vievHeaderBacground">
 
         <ImageView
             android:id="@+id/lightOffId"
@@ -73,4 +84,4 @@
             android:background="@drawable/lightoff" />
     </RelativeLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
