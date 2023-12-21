@@ -24,7 +24,22 @@
         android:textColor="@color/yellow_1205"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/settingsButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintBottom_toBottomOf="@+id/textTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textTitle"
+        app:tint="@color/white_0601"
+        />
+
+
 
     <TextView
         android:id="@+id/tempTextId"
@@ -36,7 +51,7 @@
         android:textSize="80sp"
         app:layout_constraintTop_toBottomOf="@+id/textTitle"
         app:layout_constraintStart_toStartOf="parent"
-         />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/HumLabel"
@@ -48,7 +63,7 @@
         android:textSize="25sp"
         app:layout_constraintTop_toBottomOf="@+id/tempTextId"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tempHumId"
@@ -60,8 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tempTextId"
         app:layout_constraintStart_toEndOf="@+id/HumLabel"
         android:text="00%"
-
-        />
+        tools:ignore="HardcodedText" />
 
     <RelativeLayout
         android:id="@+id/BoxLight"
@@ -81,7 +95,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/lightoff" />
+            android:background="@drawable/lightoff"
+            tools:ignore="ContentDescription" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
