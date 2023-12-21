@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="307dp" />
+
+
+
+    <RelativeLayout
+        android:layout_toLeftOf="@id/t1"
+        android:layout_marginRight="10dp"
+        android:id="@+id/BoxTemp"
+        android:layout_width="185dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/box">
+
+        <TextView
+            android:id="@+id/tempTextId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="00 °C"
+            android:textSize="40dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_toRightOf="@id/t1"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/BoxHum"
+        android:layout_width="185dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/box">
+
+        <TextView
+            android:id="@+id/tempHumId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="00 %"
+            android:textSize="40dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/BoxLight"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginVertical="200dp"
+        android:layout_centerHorizontal = "true"
+        android:background="@drawable/box">
+
+        <ImageView
+            android:id="@+id/lightOffId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/lightoff" />
+    </RelativeLayout>
+
+</RelativeLayout>
