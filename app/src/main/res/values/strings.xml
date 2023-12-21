@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SIADAClient_v0_01</string>
+    <string name="SaveAndDelete">Зберегти і вийти</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.siadaclient_v0_01;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
+
     MqttAndroidClient client;
     MqttConnectOptions options;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView light;
     private TextView temp;
     private TextView hum;
+    private ImageView settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         light = findViewById(R.id.lightOffId);
         temp = findViewById(R.id.tempTextId);
         hum = findViewById(R.id.tempHumId);
+        settings = findViewById(R.id.settingsButton);
 
         String clientId = MqttClient.generateClientId();
         client = new MqttAndroidClient(this.getApplicationContext(), HOST, clientId);
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         options = new MqttConnectOptions();
         options.setUserName(USERNAME);
         options.setPassword(PASSWORD.toCharArray());
+
 
         try {
             IMqttToken token = client.connect(options);
@@ -73,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (MqttException e) {
             e.printStackTrace();
         }
+
+        settings.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }) ;
 
         light.setOnClickListener(view -> {
 
@@ -99,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
 
         client.setCallback(new MqttCallback() {
             @Override
@@ -143,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
     public void SUBSCRIBE (MqttAndroidClient client, String topic) {
@@ -163,5 +176,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (MqttException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

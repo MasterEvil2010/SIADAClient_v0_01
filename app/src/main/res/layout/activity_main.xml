@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <View
-        android:id="@+id/vievHeaderBacground"
+        android:id="@+id/viewHeaderBackground"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/dark_4975"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/settingsButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -37,6 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/textTitle"
         app:tint="@color/white_0601"
+        tools:ignore="ContentDescription"
         />
 
 
@@ -75,7 +76,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tempTextId"
         app:layout_constraintStart_toEndOf="@+id/HumLabel"
         android:text="00%"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText"
+        />
 
     <RelativeLayout
         android:id="@+id/BoxLight"
@@ -85,7 +87,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/box"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vievHeaderBacground">
+        app:layout_constraintTop_toBottomOf="@+id/viewHeaderBackground">
 
         <ImageView
             android:id="@+id/lightOffId"
