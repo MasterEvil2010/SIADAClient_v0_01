@@ -3,7 +3,6 @@ package com.example.siadaclient_v0_01;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -64,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         temp = findViewById(R.id.tempTextId);
         hum = findViewById(R.id.tempHumId);
         ImageView settings = findViewById(R.id.settingsButton);
+
+
 
         String clientId = MqttClient.generateClientId();
         client = new MqttAndroidClient(this.getApplicationContext(), HOST, clientId);
