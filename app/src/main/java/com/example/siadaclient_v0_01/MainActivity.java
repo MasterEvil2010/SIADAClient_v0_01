@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
     MqttAndroidClient client;
     MqttConnectOptions options;
 
-
-
-
     static String HOST = "tcp://10.147.20.12:1883";
     static String USERNAME = "mosquitto";
     static String PASSWORD = "202020";
@@ -39,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     final String TAG = "lifecycle";
 
     private int lightSwitch = 0;
-
 
     private ImageView light;
     private TextView temp;
@@ -63,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         temp = findViewById(R.id.tempTextId);
         hum = findViewById(R.id.tempHumId);
         ImageView settings = findViewById(R.id.settingsButton);
-
-
 
         String clientId = MqttClient.generateClientId();
         client = new MqttAndroidClient(this.getApplicationContext(), HOST, clientId);

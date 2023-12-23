@@ -9,14 +9,12 @@ import android.widget.Button;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private Button backToMain;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        backToMain = findViewById(R.id.SaveAndExit);
+        Button backToMain = findViewById(R.id.SaveAndExit);
 
         backToMain.setOnClickListener(view -> {
             Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
