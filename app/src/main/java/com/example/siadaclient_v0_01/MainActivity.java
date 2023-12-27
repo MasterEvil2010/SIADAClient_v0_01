@@ -26,12 +26,13 @@ import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SharedPreferences bufferPrefs;
+
     MqttAndroidClient client;
     MqttConnectOptions options;
 
-    static String HOST = "tcp://10.147.20.12:1883";
-    static String USERNAME = "mosquitto";
-    static String PASSWORD = "202020";
+    private String USERNAME;
+    private String PASSWORD;
 
     final String TAG = "lifecycle";
 
@@ -40,13 +41,12 @@ public class MainActivity extends AppCompatActivity {
     private ImageView light;
     private TextView temp;
     private TextView hum;
-    private SharedPreferences bufferPrefs;
+
 
     private final String TempKey = "SavedTemp";
     private final String HumKey = "SavedHum";
 
 
-    //Старт актівіті
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +55,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "Activity створено");
 
+        bufferPrefs = getSharedPreferences("showrooms", MODE_PRIVATE);
+
+
         light = findViewById(R.id.lightOffId);
         temp = findViewById(R.id.tempTextId);
         hum = findViewById(R.id.tempHumId);
-        ImageView settings = findViewById(R.id.settingsButton);
-
-        String clientId = MqttClient.generateClientId();
-        client = new MqttAndroidClient(this.getApplicationContext(), HOST, clientId);
-
-        options = new MqttConnectOptions();
-        options.setUserName(USERNAME);
-        options.setPassword(PASSWORD.toCharArray());
 
         INIT();
         CONNECT();
         CALLBACK();
+        LISTENCLICK();
+
+
+
+
+
+
+    }
+
+
+    public void LISTENCLICK() {
+
+        ImageView settings = findViewById(R.id.settingsButton);
 
         light.setOnClickListener(view -> {
 
@@ -102,10 +110,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }) ;
 
-
     }
-
-    // END
 
     public void SUBSCRIBE(MqttAndroidClient client, String topic) {
         int qos = 1;
@@ -114,12 +119,9 @@ public class MainActivity extends AppCompatActivity {
             subToken.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-
                 }
-
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-
                 }
             });
         } catch (MqttException e) {
@@ -128,6 +130,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CONNECT() {
+
+        if (USERNAME == null && PASSWORD == null) {
+            SharedPreferences.Editor edit = bufferPrefs.edit();
+            edit.putString("MQTTLogin", "login");
+            edit.putString("MQTTPass", "pass");
+            edit.apply();
+        }
+
+
+        String HOST = bufferPrefs.getString("MQTTHost", "000.000.000.000");
+
+
+        String clientId = MqttClient.generateClientId();
+        client = new MqttAndroidClient(this.getApplicationContext(),"tcp://" + HOST + ":1883", clientId);
+
+        options = new MqttConnectOptions();
+        options.setUserName(USERNAME);
+        options.setPassword(PASSWORD.toCharArray());
+
         try {
             IMqttToken token = client.connect(options);
             token.setActionCallback(new IMqttActionListener() {
@@ -137,29 +158,21 @@ public class MainActivity extends AppCompatActivity {
                     SUBSCRIBE(client, "ledControlFeedback");
                     SUBSCRIBE(client, "RoomTemp");
                     SUBSCRIBE(client, "RoomHud");
-
                 }
-
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     Toast.makeText(MainActivity.this, "connection fell", Toast.LENGTH_LONG).show();
-
                 }
             });
-
         } catch (MqttException e) {
             e.printStackTrace();
         }
-
-
-
     }
 
     public void CALLBACK() {
         client.setCallback(new MqttCallback() {
             @Override
             public void connectionLost(Throwable cause) {
-
             }
 
             @SuppressLint("SetTextI18n")
@@ -174,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
 
                         lightSwitch = 1;
                     }
-
                     Toast.makeText(MainActivity.this, "Light" + data, Toast.LENGTH_SHORT).show();
                 }
 
@@ -185,11 +197,9 @@ public class MainActivity extends AppCompatActivity {
                     SharedPreferences.Editor edit = bufferPrefs.edit();
                     edit.putString(TempKey, part1);
                     edit.apply();
-
                     temp.setText(part1 + "°C");
 
                 }
-
                 if (topic.equals("RoomHud")) {
                     String data = message.toString();
                     String[] parts = data.split("\\.");
@@ -199,20 +209,21 @@ public class MainActivity extends AppCompatActivity {
                     edit.apply();
                     hum.setText(part1 + "%");
                 }
-
             }
 
             @Override
             public void deliveryComplete(IMqttDeliveryToken token) {
-
             }
         });
     }
 
     public void INIT() {
-        bufferPrefs = getSharedPreferences("showrooms", MODE_PRIVATE);
         temp.setText(new StringBuilder().append(bufferPrefs.getString(TempKey, "00")).append("°C").toString());
         hum.setText(new StringBuilder().append(bufferPrefs.getString(HumKey, "00")).append("%").toString());
+        USERNAME = bufferPrefs.getString("MQTTLogin", "Login");
+        PASSWORD = bufferPrefs.getString("MQTTPass", "Pass");
+
+
     }
 
 
@@ -220,17 +231,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.d(TAG, "Activity з'являється");
-
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "Activity в фокусі");
-
-
     }
 
     @Override

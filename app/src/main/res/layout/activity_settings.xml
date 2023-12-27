@@ -7,17 +7,91 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
+  <TextView
+      android:id="@+id/MQTT_hostLb"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:text="Хост"
+      android:textSize="15sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+      android:id="@+id/MQTT_host"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginEnd="16dp"
+      android:inputType="textPersonName"
+      android:text="000.000.000.000"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/MQTT_hostLb" />
+
+  <TextView
+      android:id="@+id/MQTT_LoginLb"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:text="Користувач MQTT"
+      android:textSize="15sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/MQTT_host"/>
+
+  <EditText
+      android:id="@+id/MQTT_Login"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginEnd="16dp"
+      android:inputType="textPersonName"
+      android:text="логін"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/MQTT_LoginLb" />
+
+  <TextView
+      android:id="@+id/MQTT_PassLb"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:text="Пароль MQTT"
+      android:textSize="15sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/MQTT_Login"/>
+
+  <EditText
+      android:id="@+id/MQTT_Pass"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginEnd="16dp"
+      android:inputType="textPassword"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/MQTT_PassLb" />
+
+
   <Button
       android:id="@+id/SaveAndExit"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="116dp"
-      android:layout_marginTop="637dp"
       android:layout_marginEnd="116dp"
       android:layout_marginBottom="47dp"
       android:text="@string/SaveAndDelete"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
